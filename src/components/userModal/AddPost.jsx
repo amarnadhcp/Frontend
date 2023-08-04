@@ -36,17 +36,14 @@ const AddPostForm = () => {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-50 ">
-        <div className="absolute inset-0 bg-black opacity-50 z-10"></div>
-        <div className="z-20 mt-40px">
+      <div className="flex justify-center  min-h-screen mt-44">
           <PuffLoader
-            color={"#FF0000"}
+            color={"#9c0ee8"}
             loading={isLoading}
             size={50}
             aria-label="Loading Spinner"
             data-testid="loader"
           />
-        </div>
       </div>
     );
   }
@@ -113,8 +110,8 @@ const AddPostForm = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50 mb-48 b">
-      <div className="w-full max-w-3xl mx-auto bg-white p-5 rounded-md shadow-sm mt-0">
+    <div className="flex items-center justify-center min-h-screen bg-gray-50 mb-48">
+      <div className="w-full max-w-3xl mx-auto bg-white p-5 rounded-md shadow-sm mb-52 ">
         <div className="text-center mb-5">
           <h1 className="font-bold text-3xl">New Post</h1>
         </div>

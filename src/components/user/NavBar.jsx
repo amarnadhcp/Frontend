@@ -87,21 +87,29 @@ const Navbar = () => {
         {renderUserProfile()}
       </div>
       {showDropdown && (
-        <div className="absolute top-16 right-0 bg-white rounded-md shadow-md border border-gray-300 p-4 z-50 w-48 mr-10 font-normal text-gray-500">
-          <ul className="space-y-2">
+        <div className="absolute top-16 right-0 bg-white rounded-md shadow-md border border-gray-300 p-4 z-50 w-44 mr-10 font-normal text-gray-500">
+          <ul className="space-y-1">
             <Link to="/profile">
-              <li className="px-3 py-1 cursor-pointer hover:bg-gray-200 text-black">
+              <li className="px-3 py-1 cursor-pointer text-sm hover:bg-gray-200 text-black  ">
                 Profile
               </li>
             </Link>
             <hr className="my-1 border-gray-300" />
+            <Link to="/feed">
+              <li className="px-3 py-2 cursor-pointer text-sm hover:bg-gray-200 text-black">
+                Feed 
+              </li>
+            </Link>
+
+            <hr className="my-1 border-gray-300" />
             <Link to="/dashboard">
-              <li className="px-3 py-2 cursor-pointer hover:bg-gray-200 text-black">
+              <li className="px-3 py-2 cursor-pointer text-sm hover:bg-gray-200 text-black">
                 Dashboard
               </li>
             </Link>
+           
             <hr className="my-1 border-gray-300" />
-            <li className="px-3 py-1 cursor-pointer hover:bg-gray-200 text-black" onClick={handleLogout}>
+            <li className="px-3 py-1 cursor-pointer text-sm hover:bg-gray-200 text-black" onClick={handleLogout}>
               Logout
             </li>
           </ul>
