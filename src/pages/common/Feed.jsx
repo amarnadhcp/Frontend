@@ -1,99 +1,124 @@
 import React from "react";
 import Navbar from "../../components/user/NavBar";
 import Footer from "../../components/user/Footer";
+import userRequest from "../../utils/userRequest";
+import {useQuery} from "@tanstack/react-query"
+import PuffLoader from "react-spinners/PuffLoader";
+import { Link } from "react-router-dom";
+
 const Feed = () => {
 
-    const gigData = [
-        {
-            id: 1,
-            image: 'https://images.pexels.com/photos/1462935/pexels-photo-1462935.jpeg?auto=compress&cs=tinysrgb&w=1600',
-            userImage: 'https://lh3.googleusercontent.com/a/AAcHTtd2rf7dV81XhbMhLJzn3pV8Mm27_Mx7kjKT-MalBkZHL7w=s96-c',
-            userName: 'Amar',
-            title:"Title",
-            description: 'Sample gig description 1',
-            totalStars: 100,
-            starNumber: 20,
-            price: 100,
-        },
-        {
-            id: 2,
-            image: 'https://images.pexels.com/photos/4458554/pexels-photo-4458554.jpeg?auto=compress&cs=tinysrgb&w=1600',
-            userImage: 'https://lh3.googleusercontent.com/a/AAcHTtd2rf7dV81XhbMhLJzn3pV8Mm27_Mx7kjKT-MalBkZHL7w=s96-c',
-            userName: 'John',
-            title:"Title",
-            description: 'Sample gig description 2',
-            totalStars: 150,
-            starNumber: 30,
-            price: 85,
-        },
-        {
-            id: 3,
-            image: 'https://images.pexels.com/photos/6077368/pexels-photo-6077368.jpeg?auto=compress&cs=tinysrgb&w=1600',
-            userImage: 'https://lh3.googleusercontent.com/a/AAcHTtd2rf7dV81XhbMhLJzn3pV8Mm27_Mx7kjKT-MalBkZHL7w=s96-c',
-            userName: 'Emily',
-            title:"Title",
-            description: 'Sample gig description 3',
-            totalStars: 200,
-            starNumber: 40,
-            price: 120,
-        },
-        {
-            id: 4,
-            image: 'https://images.pexels.com/photos/4065876/pexels-photo-4065876.jpeg?auto=compress&cs=tinysrgb&w=1600',
-            userImage: 'https://lh3.googleusercontent.com/a/AAcHTtd2rf7dV81XhbMhLJzn3pV8Mm27_Mx7kjKT-MalBkZHL7w=s96-c',
-            userName: 'Michael',
-            title:"Title",
-            description: 'Sample gig description 4',
-            totalStars: 80,
-            starNumber: 16,
-            price: 150,
-        },
-        
-        // Add more entries here
-    ];
+   const {isLoading,error,data}=useQuery({
+    queryKey:["AllGigs"],
+    queryFn:()=>userRequest.get("freelancer/gigs")
+    .then((res)=>res.data),
+   })
 
-
-    return (
-        <>
-        <Navbar />
-
-        <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-8 md:gap-16 px-4 sm:px-8 md:px-20">
-      {gigData.map((item) => (
-      <div key={item.id} className="border border-gray-300 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 mb-4 sm:mb-8 md:mb-10 mt-8 sm:mt-16 rounded-md overflow-hidden">
-      <img src={item.image} alt="" className="w-full h-1/2 object-cover rounded-t-md" />
-      <div className="p-4 flex flex-col justify-between h-1/2">
-        <div>
-          <div className="flex items-center gap-2">
-            <img src={item.userImage} alt="" className="w-7 h-7 rounded-full object-cover" />
-            <span>{item.userName}</span>
-          </div>
-          <p className="text-gray-700 mt-2">{item.title}</p>
-          <p className="text-gray-700">{item.description}</p>
-        </div>
-        <hr className="border-t-2 border-gray-300 " />
-
-        <div className="flex justify-between items-center mt-3">
-          <div className="flex flex-col">
-            <span className="text-gray-500 text-xs">STARTING AT</span>
-            <h2 className="text-gray-700 text-lg font-normal">${item.price}</h2>
-          </div>
-          <img src="/img/heart.png" alt="" className="w-4 h-4 cursor-pointer" />
-        </div>
+   if (isLoading) {
+    return(
+      <div className='flex justify-center  min-h-screen mt-44'>
+         <PuffLoader
+            color={"#9c0ee8"}
+            loading={isLoading}
+            size={50}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
       </div>
+    )
+  }
+  if (error) {
+    return <h1>something went wrong</h1>
+  }
+
+   
+    return (
+      <>
+      <Navbar />
+
+    <div className="p-4 flex items-center justify-center">
+  <div className="w-full  sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5">
+    <div className="relative rounded-lg flex">
+      <input
+        type="text"
+        placeholder="Search..."
+        className="px-4 py-2 w-full rounded-l-lg border focus:outline-none "
+      />
+      <button
+        className="bg-violet-500 text-white px-4 py-2 rounded-r-lg flex items-center focus:outline-none"
+      >
+        
+        Search
+      </button>
     </div>
-  ))}
+  </div>
 </div>
 
 
 
+    
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-8 md:gap-10 px-2 sm:px-8 md:px-10 mt-12">
+        {data.allpost.map((item) => (
+          <Link to={`/gig/${item._id}`} >
+          <div
+            key={item.id}
+            className="border border-gray-300 rounded-md overflow-hidden flex flex-col "
+          >
+            <img
+              src={item.images[0]}
+              alt=""
+              className="w-full h-40 object-cover rounded-t-md"
+            />
+            <div className="p-4 flex flex-col justify-between flex-grow">
+              <div className="mb-2">
+                <div className="flex items-center gap-2">
+                  <img
+                    src={item.userId.img}
+                    alt=""
+                    className="w-7 h-7 rounded-full object-cover"
+                  />
+                  <span className="text-sm">{item.userId.username}</span>
+                </div>
+                <p className="text-gray-700 mt-2 font-serif text-sm sm:text-base md:text-lg truncate">
+                  {item.title}
+                </p>
+                <p className="text-gray-700 font-light text-xs sm:text-sm md:text-base truncate">
+                  {item.shortDesc}
+                </p>
+              </div>
+              <hr className="border-t-2 border-gray-300" />
+              <div className="flex justify-between items-end">
+                <div className="flex flex-col">
+                  <span className="text-gray-500 text-xs sm:text-sm mt-1">
+                    STARTING AT
+                  </span>
+                  <h2 className="text-gray-700 text-lg font-normal sm:text-xl">
+                    ${item.price}
+                  </h2>
+                </div>
+                <img
+                  src="/img/heart.png"
+                  alt=""
+                  className="w-4 h-4 cursor-pointer mt-5"
+                />
+              </div>
+            </div>
+          </div>
+          </Link>
+        ))}
+      </div>
 
 
-
+    <Footer/>
 
     </>
-       
+    
 
-    )
+      
+      );
+      
+      
+      
 }
 
 export default Feed

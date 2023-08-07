@@ -6,7 +6,7 @@ import { LogoutDetails } from '../../Redux/UserSlice';
 const Navbar = () => {
   const dispatch = useDispatch();
   const [showDropdown, setShowDropdown] = useState(false);
-  const { email, id, username, image } = useSelector(state => state.user);
+  const { username, image } = useSelector(state => state.user);
   // const currentUser = localStorage.getItem("currentUser");
 
   const handleProfileClick = () => {

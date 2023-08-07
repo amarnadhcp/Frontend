@@ -15,7 +15,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundColor: {
+        'button-color': '#ac46a1',
+        'but-color': '#d62828'
+      },
+    },
   },
   plugins: [],
 }

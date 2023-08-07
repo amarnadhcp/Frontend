@@ -10,6 +10,7 @@ import Feed from "../pages/common/Feed";
 import UserPublic from "../protected/UserPublic";
 import UserProtect from "../protected/UserProtected";
 import PageNotFound from "../pages/user/PageNotFound";
+import Gig from "../components/common/Gig"
 
 
 
@@ -26,6 +27,7 @@ const UserRoutes = () => {
       <Route exact path="/profile" element={<UserProtect>  <Profile />  </UserProtect>} />
       <Route exact path="/dashboard" element={  <UserProtect>    <Dashboard/>  </UserProtect>  } />
       <Route exact path="/feed" element={<Feed/>}/>
+      <Route exact path="/gig/:id" element={<Gig/>}/>
     </Routes>
   );
 };

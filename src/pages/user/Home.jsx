@@ -8,6 +8,7 @@ import Cards from "../../components/user/Cards";
 import NavBar from "../../components/user/NavBar"
 import Footer from "../../components/user/Footer";
 import Container from "../../components/user/Container";
+import Working from "../../components/common/Working";
 const Home = () => {
     return (
    
@@ -19,6 +20,8 @@ const Home = () => {
             <Cards />
 
             <Container/>    
+
+            <Working/>
 
             <Footer/>
         </div>

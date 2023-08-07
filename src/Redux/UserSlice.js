@@ -9,9 +9,7 @@ const initialState = {
     isSeller:"",
     desc:"",
     country:"",
-    
-
-  
+     
 }
 
 const userSlice = createSlice({

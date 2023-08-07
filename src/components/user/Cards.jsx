@@ -69,17 +69,17 @@ const Cards = () => {
       
       {data.map((card, index) => (
         <div key={index} className="flex  py-12 mx-4 ml-12 h-80 mt-6">
-          <div className="container mx-auto">
-            <div className="catCard relative w-52    text-white cursor-pointer overflow-hidden">
+          <div className=" mx-auto">
+            <div className=" relative w-52    text-white cursor-pointer overflow-hidden">
               <img
                 src={card.img}
                 alt=""
                 className="w-full h-56 object-cover"
               />
-              <span className="title font-semibold absolute top-3 left-2 text-2xl">
+              <span className=" font-semibold absolute top-3 left-2 text-2xl">
                 {card.title}
               </span>
-              <span className="desc font-light absolute top-12 left-2">
+              <span className=" font-light absolute top-12 left-2">
                 {card.desc}
               </span>
             </div>
