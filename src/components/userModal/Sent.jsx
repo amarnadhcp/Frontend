@@ -1,8 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import userRequest from "../../utils/userRequest"
+import { useSelector } from 'react-redux';
 
 const Sent = ({sellerId}) => {
+  const {isSeller}=useSelector(state=>state.user)
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formError, setError] = useState('')
   const [formData, setFormData] = useState({
@@ -55,6 +57,7 @@ const Sent = ({sellerId}) => {
     <>
       <button
         className="bg-amber-400 text-white font-semibold rounded px-3 py-1 mt-2 focus:outline-none"
+        disabled={isSeller?true:false}
         onClick={openModal}
       >
         Open Modal

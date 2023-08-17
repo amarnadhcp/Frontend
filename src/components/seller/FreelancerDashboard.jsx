@@ -1,23 +1,13 @@
 import React, { useState } from "react";
-import NavBar from "../../components/user/NavBar";
-import AddPostForm from "../../components/userModal/AddPost";
-import SendPreposal from "../../components/userModal/SendPreposal";
-import MyGigs from "../../components/seller/MyGigs";
-import Footer from "../../components/user/Footer"
+import NavBar from "../common/NavBar";
+import AddPostForm from "../userModal/AddPost";
+import MyGigs from "./MyGigs";
+import Footer from "../common/Footer"
+import RequesPreposal from "./RequestPreposals"
+import Ongoing from "./Ongoing"
 
-const ProposalComponent = () => {
-  return <div className="bg-green-500 p-4 text-white mt-5">Proposal Component</div>;
-};
 
-const OngoingProjectComponent = () => {
-  return (
-    <div className="bg-yellow-500 p-4 text-white mt-5">Ongoing Project Component</div>
-  );
-};
 
-const AnotherOptionComponent = () => {
-  return <div className="bg-red-500 p-4 text-white mt-5">Another Option Component</div>;
-};
 
 const Dashboard = () => {
   const [selectedOption, setSelectedOption] = useState("addPost");
@@ -29,9 +19,9 @@ const Dashboard = () => {
   const renderComponent = () => {
     switch (selectedOption) {
       case "proposal":
-        return <ProposalComponent />;
+        return <RequesPreposal />;
       case "ongoingProject":
-        return <SendPreposal />;
+        return <Ongoing />;
       case "anotherOption":
         return <MyGigs />;
       default:
@@ -42,7 +32,6 @@ const Dashboard = () => {
   return (
     <>
     <div className="bg-gray-100 min-h-screen">
-      <NavBar />
       <div className="max-w-6xl mx-auto py-8 px-4 sm:px-6 lg:px-8  mb-15">
         <nav className="bg-white shadow-lg rounded-lg overflow-hidden">
           <div className="flex items-center justify-center h-10">
@@ -91,7 +80,6 @@ const Dashboard = () => {
       </div>
       <div className="">{renderComponent()}</div>
     </div>
-    <Footer/>
     </>
   );
 };

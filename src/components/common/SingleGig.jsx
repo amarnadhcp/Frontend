@@ -1,10 +1,11 @@
 import React from "react";
-import Navbar from "../user/NavBar"
-import { useParams } from 'react-router-dom';
+// import { useMutation } from "@tanstack/react-query";
+import { Link, useParams } from 'react-router-dom';
 import { useQuery } from "@tanstack/react-query"
 import userRequest from '../../utils/userRequest';
 import PuffLoader from "react-spinners/PuffLoader";
 import Sent from "../userModal/Sent";
+
 
 
 const Gig = () => {
@@ -12,9 +13,26 @@ const Gig = () => {
 
   const { isLoading, error, data } = useQuery({
     queryKey: ["singleGig"],
-    queryFn: () => userRequest.get(`users/gig/${id}`)
-      .then((res) => res.data)
-  })
+    queryFn: () => userRequest.get(`users/gig/${id}`).then((res) => res.data),
+  });
+
+  // const mutation = useMutation({
+  //   mutationFn: (payInfo) => {
+  //     return userRequest.post("users/payment", payInfo);
+  //   },
+  // });  
+
+  // const HandlePayment = async () => {
+  //   console.log("kkkkkk");
+  //   const detail = data.gig._id;
+  //   // mutation.mutate({ detail });
+  //  const response =  await userRequest.post("/users/payment",{detail})
+  //  console.log(response);
+  //  if (response.data.url) {
+  //   window.location.href = response.data.url;
+  // }
+  // };
+
 
   if (isLoading) {
     return (
@@ -33,15 +51,14 @@ const Gig = () => {
     return <h1>something went wrong</h1>
   }
 
-
+  
 
   return (
     <>
-      <Navbar />
 
 
 
-      <div className="bg-gray-100 py-4 px-4 md:px-10 lg:px-20">
+      <div className="bg-gray-100 py-4 px-4 md:px-10 lg:px-20 ">
         <div className="container mx-auto flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
           <div className="md:flex-1 space-y-4 md:pr-5">
             <p className="text-sm font-light text-gray-600">
@@ -81,9 +98,12 @@ const Gig = () => {
                     {data.gig.userId.username}
                   </span>
                   <div className="flex space-x-2 mt-2">
-                    <button className="bg-violet-500 text-white font-semibold rounded px-3 py-1 mt-2">
+                  
+                    <Link to={`/chat/${data.gig.userId._id}`}>
+                    <button className="bg-violet-500 text-white font-semibold rounded px-3 py-1 mt-2 focus:outline-none">
                       Contact Me
                     </button>
+                    </Link>
                     {/* <button className="bg-amber-400 text-white font-semibold rounded px-3 py-1 mt-2 focus:outline-none">
                       Proposal
                     </button> */}
@@ -141,10 +161,12 @@ const Gig = () => {
                 </div>
               ))}
             </div>
-
-            <button className="md:absolute md:bottom-0 md:right-0 bg-violet-500 text-white font-semibold rounded px-4 py-2 mt-4 md:mb-4 md:mr-4">
-              Continue
+             
+            <Link to={`/pay/${id}`}>
+            <button  className="md:absolute md:bottom-0 md:right-0 bg-violet-500 text-white font-semibold rounded px-4 py-2 mt-4 md:mb-4 md:mr-4 focus:outline-none">
+              Payment
             </button>
+            </Link>
           </div>
 
         </div>

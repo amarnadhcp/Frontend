@@ -4,7 +4,7 @@ import "react-multi-carousel/lib/styles.css";
 import { useQuery } from "@tanstack/react-query";
 import adminRequest from "../../utils/AdminRequest";
 import PuffLoader from "react-spinners/PuffLoader";
-
+import { Link } from "react-router-dom";
 
 
 const responsive = {
@@ -68,6 +68,7 @@ const Cards = () => {
     autoPlaySpeed={1000}>
       
       {data.map((card, index) => (
+        <Link to={`/category/${card._id}`}>
         <div key={index} className="flex  py-12 mx-4 ml-12 h-80 mt-6">
           <div className=" mx-auto">
             <div className=" relative w-52    text-white cursor-pointer overflow-hidden">
@@ -85,6 +86,7 @@ const Cards = () => {
             </div>
           </div>
         </div>
+        </Link>
       ))}
     </Carousel>
     </div>

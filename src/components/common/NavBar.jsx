@@ -107,6 +107,13 @@ const Navbar = () => {
                 Dashboard
               </li>
             </Link>
+
+            <hr className="my-1 border-gray-300" />
+            <Link to="/chat">
+              <li className="px-3 py-2 cursor-pointer text-sm hover:bg-gray-200 text-black">
+                chat
+              </li>
+            </Link>
            
             <hr className="my-1 border-gray-300" />
             <li className="px-3 py-1 cursor-pointer text-sm hover:bg-gray-200 text-black" onClick={handleLogout}>
