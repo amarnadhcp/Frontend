@@ -32,6 +32,16 @@ const CategorieWise = () => {
     return <h1>something went wrong</h1>
   }
 
+  if ( data.allpost.length === 0) {
+    return (
+      <div className='flex flex-col justify-center items-center min-h-screen'>
+      <p className='text-lg md:text-xl lg:text-2xl text-gray-600 mb-60 md:mb-60 animate-bounce'>
+        Oops! Nothing over here
+      </p>
+    </div>
+    );
+  }
+
    
     return (
       <>

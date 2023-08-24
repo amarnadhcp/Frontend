@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import PuffLoader from "react-spinners/PuffLoader";
 import Select from 'react-select/creatable';
 import makeAnimated from 'react-select/animated';
+import userRequest from '../../utils/userRequest';
 const animatedComponents = makeAnimated();
 
 
@@ -30,7 +31,7 @@ const AddPostForm = () => {
 
   const { isLoading, error, data } = useQuery({
     queryKey: ['categorys'],
-    queryFn: () => adminRequest.get("/categorys")
+    queryFn: () => userRequest.get("/users/categorys")
       .then((res) => res.data)
   });
 

@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import adminRequest from "../../utils/AdminRequest";
 import PuffLoader from "react-spinners/PuffLoader";
 import { Link } from "react-router-dom";
+import userRequest from "../../utils/userRequest";
 
 
 const responsive = {
@@ -32,28 +33,31 @@ const Cards = () => {
 
   const { isLoading, error, data } = useQuery({
     queryKey: ['categorys'],
-    queryFn: () => adminRequest.get("/categorys")
+    queryFn: () => userRequest.get("/users/categorys")
       .then((res) => res.data)
   });
   
   if (isLoading) {
     return(
-      <div className="flex items-center justify-center min-h-screen bg-gray-50 ">
-      <div className="absolute inset-0 bg-black opacity-50 z-10"></div>
-      <div className="z-20 mt-40px">
-        <div className="flex flex-col items-center justify-center h-full">
-          <PuffLoader
-            color={"#FF0000"}
-            loading={isLoading}
-            size={50}
-            aria-label="Loading Spinner"
-            data-testid="loader"
-          />
-          <p className="text-gray-600 mt-2">Loading...</p>
-        </div>
-      </div>
-    </div>
+      <div>Loading....</div>
     )
+    // return(
+    //   <div className="flex items-center justify-center min-h-screen bg-gray-50 ">
+    //   <div className="absolute inset-0 bg-black opacity-50 z-10"></div>
+    //   <div className="z-20 mt-40px">
+    //     <div className="flex flex-col items-center justify-center h-full">
+    //       <PuffLoader
+    //         color={"#FF0000"}
+    //         loading={isLoading}
+    //         size={50}
+    //         aria-label="Loading Spinner"
+    //         data-testid="loader"
+    //       />
+    //       <p className="text-gray-600 mt-2">Loading...</p>
+    //     </div>
+    //   </div>
+    // </div>
+    // )
   }
   if (error) {
     return <h1>something went wrong</h1>
