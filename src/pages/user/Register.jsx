@@ -88,7 +88,7 @@ const Register = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row items-center h-screen bg-cover bg-[url('./img/login.jpeg')]">
+    <div className="flex flex-col md:flex-row items-center h-screen bg-cover bg-[url('https://res.cloudinary.com/dvprhxg7x/image/upload/v1692878690/asset/pexels-josh-sorenson-1714208_narbbe.jpg')]">
     <div className="w-full md:w-3/4">
       <div className="text-white text-center md:text-left p-8 md:pl-16">
         <h1 className="text-3xl md:text-5xl font-bold mb-4 md:mb-8">Find the Perfect Freelancer for Your Project</h1>
@@ -139,7 +139,7 @@ const Register = () => {
   
         <div className="flex flex-col md:flex-row items-center justify-center md:justify-between">
           <button
-            className="flex items-center justify-center my-3 md:my-5 py-2 px-4 w-full md:w-32 bg-white border border-gray-300 rounded-lg text-gray-700 font-semibold shadow-lg transform transition hover:scale-105 focus:outline-none md:mr-2 md:w-auto"
+            className="flex items-center justify-center my-3 md:my-5 py-2 px-4 w-full  bg-white border border-gray-300 rounded-lg text-gray-700 font-semibold shadow-lg transform transition hover:scale-105 focus:outline-none md:mr-2 md:w-auto"
             type="button"
             onClick={() => {
               login();

@@ -75,7 +75,8 @@ const Login = () => {
                         email: res.data.info.email,
                         isSeller:res.data.info.isSeller,
                         country:res.data.info.country,
-                        desc:res.data.info.desc
+                        desc:res.data.info.desc,
+                        image:res.data.info.img
                     }))
                     localStorage.setItem("currentUser", res.data.token)
                     navigate("/")
@@ -90,7 +91,7 @@ const Login = () => {
     }
     return (
 
-      <div className="bg-[url('./img/login.jpeg')] bg-cover h-screen flex flex-col items-center justify-center">
+      <div className="bg-[url('https://res.cloudinary.com/dvprhxg7x/image/upload/v1692878690/asset/pexels-josh-sorenson-1714208_narbbe.jpg')] bg-cover h-screen flex flex-col items-center justify-center">
       <div className="w-full md:w-96 p-4 md:p-8 border border-gray-300 bg-white rounded-lg shadow-lg">
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <h1 className="text-purple-600 text-2xl md:text-3xl mb-2 md:mb-4 font-semibold text-center">

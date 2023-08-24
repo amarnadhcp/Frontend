@@ -81,7 +81,7 @@ const Navbar = () => {
       <div className="mx-auto flex items-center justify-between p-5">
         <div className="logo text-2xl font-bold">
           <Link to="/">
-            <span className="text text-2xl ">freelancer</span>
+            <span className="text text-2xl ">Freelancer Hub</span>
           </Link>
         </div>
         {renderUserProfile()}

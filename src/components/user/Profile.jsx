@@ -53,7 +53,7 @@ const Profile = () => {
                         image ||
                         "https://res.cloudinary.com/dvprhxg7x/image/upload/v1692803989/asset/noavatar_vhrf74.jpg"
                       }
-                      className="shadow-xl h-20 sm:h-20 md:h-20 w20 sm:w-30 md:w-20 rounded-full"
+                      className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-200-px cursor-pointer"
                     />
                   </div>
                 </div>
