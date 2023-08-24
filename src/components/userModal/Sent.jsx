@@ -4,7 +4,7 @@ import userRequest from "../../utils/userRequest"
 import { useSelector } from 'react-redux';
 
 const Sent = ({sellerId}) => {
-  const {isSeller}=useSelector(state=>state.user)
+  const {id}=useSelector(state=>state.user)
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formError, setError] = useState('')
   const [formData, setFormData] = useState({
@@ -57,10 +57,10 @@ const Sent = ({sellerId}) => {
     <>
       <button
         className="bg-amber-400 text-white font-semibold rounded px-3 py-1 mt-2 focus:outline-none"
-        disabled={isSeller?true:false}
+        disabled={id===sellerId}
         onClick={openModal}
       >
-        Open Modal
+        send Preposal
       </button>
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-opacity-50 bg-gray-700">

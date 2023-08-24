@@ -14,9 +14,10 @@ import SingleGig from "../components/common/SingleGig"
 import CategorieWise from "../pages/common/Categoriewise";
 import Layout from "../pages/common/Layout"
 import Success from "../components/user/Success";
-import Pay from "../components/user/Pay"
+import Pay from "../pages/Payment/Pay"
 import Chat from "../pages/common/Chat"
-
+import Form from "../pages/common/Form"
+import Paypreposal from "../pages/ProposalPay/Pay"
 
 
 const UserRoutes = () => {
@@ -24,20 +25,23 @@ const UserRoutes = () => {
     <Routes>
       <Route  path="*" element={<PageNotFound/>}/>
       <Route exact path="/login" element={<UserPublic>      <Login />     </UserPublic>} />
-      <Route exact path="/register" element={<UserPublic><Register /></UserPublic>} />
+      <Route exact path="/register" element={<UserPublic> <Register /> </UserPublic>} />
       <Route exact path="/:id/verify/:token" element={<EmailVerify />} />
 
       <Route  path="/" element={ <Layout> </Layout> }>
       <Route index element={<Home/>}/>
       <Route exact path="/profile" element={<UserProtect>  <Profile />  </UserProtect>} />
       <Route exact path="/dashboard" element={  <UserProtect>    <Dashboard/>  </UserProtect>  } />
-      <Route exact path="/chat/:id" element={     <Chat/>   } />
+      <Route exact path="/chat/:id" element={  <UserProtect> <Chat/>    </UserProtect>     } />
+      <Route exact path="/chat" element={ <UserProtect> <Chat/> </UserProtect>       } />
 
       <Route exact path="/feed" element={<Feed/>}/>
       <Route exact path="/gig/:id" element={<SingleGig/>}/>
-      <Route exact path="/pay/:id" element={<Pay/>}/>
-      <Route exact path="/success" element={<Success/>}/>
+      <Route exact path="/pay/:id" element={<UserProtect>  <Pay/> </UserProtect>}/>
+      <Route exact path="/pay-preposal/:id" element={<UserProtect> <Paypreposal/> </UserProtect>}/>
+      <Route exact path="/success" element={<UserProtect> <Success/>  </UserProtect>}/>
       <Route exact path="/category/:id" element={<CategorieWise/>}/>
+      <Route exact path="/form" element={<Form/>}/>
       </Route>
     </Routes>
   );

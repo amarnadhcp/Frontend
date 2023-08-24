@@ -90,73 +90,82 @@ const Login = () => {
     }
     return (
 
-        <div className="flex items-center bg-[url('./img/login.jpeg')] h-screen bg-cover justify-center">
-          <div className="flex justify-end">
-            <div className="w-full md:w-96 p-8 border border-gray-300">
-              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                <h1 className="text-white text-3xl mb-4 font-semibold">Login</h1>
-        
-                <label htmlFor="username" className="text-white text-lg font-medium">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="text"
-                  className="px-4 py-2 border border-gray-300"
-                  onChange={(e) => { setUser({ ...user, [e.target.name]: e.target.value }) }}
-                />
-        
-                <label htmlFor="password" className="text-white text-lg font-medium">
-                  Password
-                </label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  className="px-4 py-2 border border-gray-300"
-                  onChange={(e) => { setUser({ ...user, [e.target.name]: e.target.value }) }}
-                />
-
-               {error && (
-                  <span className="text-red-500 text-lg text-center">{error}</span>
-                )}
-
-                <div className="flex items-center justify-between">
-                  <button
-                    className="flex items-center justify-center mx-auto my-5 py-2 px-4 w-40 bg-white border border-white-300 rounded-lg text-gray-700 font-semibold shadow-lg transform transition hover:scale-105 focus:outline-none"
-                    type="button"
-                    onClick={() => {
-                      login();
-                    }}
-                  >
-                    <FcGoogle className="inline-block w-6 h-6 mr-2" />
-                    <span className="font-normal">Sign in</span>
-                  </button>
-                  <span className="mx-4 text-white">OR</span>
-                  <button
-                    type="submit"
-                    className="flex items-center justify-center bg-purple-600 hover:bg-purple-700 text-white font-semibold text-lg py-2 px-4 rounded focus:outline-none hover:scale-105 focus:shadow-outline w-40"
-                  >
-                    Login
-                  </button>
-                </div>
-                
-                <div className="flex items-center justify-center ">
-                  <p className="text-white text-lg">
-                    Don't have an account?{' '}
-                    <Link
-                      to="/register"
-                      className="text-purple-600 underline font-semibold"
-                    >
-                      Register here
-                    </Link>
-                  </p>
-                </div>
-              </form>
-            </div>
+      <div className="bg-[url('./img/login.jpeg')] bg-cover h-screen flex flex-col items-center justify-center">
+      <div className="w-full md:w-96 p-4 md:p-8 border border-gray-300 bg-white rounded-lg shadow-lg">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <h1 className="text-purple-600 text-2xl md:text-3xl mb-2 md:mb-4 font-semibold text-center">
+            Welcome Back!
+          </h1>
+    
+          <label htmlFor="email" className="text-gray-800 text-lg font-medium">
+            Email
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            className="px-3 py-2 border border-gray-300 rounded-md focus:ring-purple-600 focus:border-purple-600"
+            onChange={(e) => {
+              setUser({ ...user, [e.target.name]: e.target.value });
+            }}
+          />
+    
+          <label htmlFor="password" className="text-gray-800 text-lg font-medium">
+            Password
+          </label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            className="px-3 py-2 border border-gray-300 rounded-md focus:ring-purple-600 focus:border-purple-600"
+            onChange={(e) => {
+              setUser({ ...user, [e.target.name]: e.target.value });
+            }}
+          />
+    
+          {error && (
+            <span className="text-red-500 text-sm md:text-lg text-center">{error}</span>
+          )}
+    
+          <button
+            type="submit"
+            className="bg-purple-600 hover:bg-purple-700 text-white font-semibold text-base md:text-lg py-2 px-4 rounded focus:outline-none hover:scale-105 focus:shadow-outline w-full"
+          >
+            Login
+          </button>
+    
+          <div className="flex items-center justify-center mt-3 md:mt-4">
+            <p className="text-gray-800 text-sm md:text-lg">
+              Don't have an account?{' '}
+              <Link
+                to="/register"
+                className="text-purple-600 underline font-semibold"
+              >
+                Register here
+              </Link>
+            </p>
           </div>
+        </form>
+    
+        <div className="flex flex-col items-center mt-4">
+          <span className="text-gray-800 text-sm md:text-lg mb-2">OR</span>
+          <button
+            className="flex items-center justify-center bg-white border border-gray-300 rounded-lg text-gray-700 font-semibold shadow-lg transform transition hover:scale-105 focus:outline-none w-full py-2"
+            type="button"
+            onClick={() => {
+              login();
+            }}
+          >
+            <FcGoogle className="inline-block w-6 h-6 mr-2" />
+            <span className="font-normal">Sign in with Google</span>
+          </button>
         </div>
+      </div>
+    </div>
+    
+    
+
+    
         
 
     )

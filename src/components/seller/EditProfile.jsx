@@ -19,7 +19,9 @@ function EditProfile({data}) {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    setSelectedImage(file);
+    console.log(file,"-------  the selected files -----");
+    setSelectedImage("yaaaa");
+    console.log(selectedImage);
   };
 
   const handleImageClick = () => {
@@ -100,7 +102,7 @@ function EditProfile({data}) {
             <div className="p-6">
               <button
                 type="button"
-                className="absolute flex text-gray-400 hover:text-gray-700 rounded-full p-1 transition-all duration-150"
+                className="absolute flex text-gray-400 hover:text-gray-700 rounded-full p-1 transition-all duration-150 "
                 onClick={toggleModal}
               >
                 <svg
@@ -118,7 +120,7 @@ function EditProfile({data}) {
                 </svg>
                 <span className="sr-only">Close modal</span>
               </button>
-              <div className="flex justify-center mb-4">
+              {/* <div className="flex justify-center mb-4">
                 <label htmlFor="imageInput" className="cursor-pointer">
                   <img
                     src={
@@ -138,7 +140,7 @@ function EditProfile({data}) {
                   accept="image/*"
                   onChange={handleImageChange}
                 />
-              </div>
+              </div> */}
               <form className="space-y-4" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>

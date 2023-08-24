@@ -51,7 +51,7 @@ const Navbar = () => {
               >
                 <img
                   className="w-8 h-8 rounded-full cursor-pointer"
-                  src={image || "/img/noavatar.jpg"}
+                  src={image || "https://res.cloudinary.com/dvprhxg7x/image/upload/v1692803989/asset/noavatar_vhrf74.jpg"}
                   alt="User Photo"
                 />
               </div>

@@ -1,3 +1,4 @@
+import { data } from "autoprefixer";
 import adminRequest from "../utils/AdminRequest"
 
 export  const AdminLogin = async  (data) => {
@@ -19,5 +20,11 @@ export const userManage = async(data)=>{
 
   return adminRequest.post(`/usermanage/${data}`,{
     withCredentials:true
+  })
+}
+
+export const PayFreelancer = async(FreelancerId,Price,ProposalId)=>{
+  return adminRequest.post("/payment",{
+    FreelancerId,Price,ProposalId
   })
 }

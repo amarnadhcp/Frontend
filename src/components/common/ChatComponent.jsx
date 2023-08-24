@@ -1,7 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { addMessage,getAllMessages,senderDetails } from "../../api/userApi";
+import {
+  addMessage,
+  getAllMessages,
+  senderDetails,
+  getAllContacts,
+} from "../../api/userApi";
 // const ORGANIZER_PROFILE_URL = import.meta.env.VITE_ORGANIZER_PROFILE_URL;
 // import img from "../../assets/images/avathar2.png";
 // import Picker from "emoji-picker-react";
@@ -10,33 +15,45 @@ import { IoMdSend } from "react-icons/io";
 import { v4 as uuidv4 } from "uuid";
 // const PROFILE_URL = import.meta.env.VITE_PROFILE_URL;
 
-
 function ChatContainer({ sender, socket }) {
   const userData = useSelector((state) => state.user);
   const [organizerDetails, setOrganizerDetails] = useState(null);
-//   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  //   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [msg, setMsg] = useState("");
   const [messages, setMessages] = useState([]);
+  const [contacts, setContacts] = useState([]);
+  const [to, setTo] = useState(sender ? sender : "");
+  const [selectedContact, setSelectedContact] = useState(null);
   const [msgSent, setMsgSent] = useState(false);
   const [arrivalMsg, setArrivalMsg] = useState(null);
   const scrollRef = useRef();
 
-//   const handleEmojiPickerHideShow = () => {
-//     setShowEmojiPicker(!showEmojiPicker);
-//   };
-//   const handleEmojiClick = (present, emoji) => {
-//     let message = msg;
-//     message += emoji.emoji;
-//     setMsg(message);
-//   };
-  
+  //   const handleEmojiPickerHideShow = () => {
+  //     setShowEmojiPicker(!showEmojiPicker);
+  //   };
+  //   const handleEmojiClick = (present, emoji) => {
+  //     let message = msg;
+  //     message += emoji.emoji;
+  //     setMsg(message);
+  //   };
+  useEffect(() => {
+    console.log("get all contacts");
+    getAllContacts(userData.id)
+      .then((res) => {
+        setContacts(res.data.users);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   const sendMessage = (e) => {
     e.preventDefault();
-    console.log('send-msg emit in chatContainer');
+    console.log("send-msg emit in chatContainer");
     socket.current.emit("send-msg", {
-      to: sender, 
+      to: to,
       from: userData.id,
-      msg: msg,   
+      msg: msg,
     });
 
     addMessage(userData.id, sender, msg)
@@ -47,14 +64,13 @@ function ChatContainer({ sender, socket }) {
         msgs.push({ fromSelf: true, message: msg });
         setMessages(msgs);
       })
-      .catch((err) => { 
+      .catch((err) => {
         console.log(err);
       });
-  };     
+  };
 
   useEffect(() => {
     if (sender && userData.id) {
-        console.log("yesss");
       getAllMessages(userData.id, sender).then(({ data: { messages } }) => {
         setMessages(messages);
       });
@@ -65,21 +81,20 @@ function ChatContainer({ sender, socket }) {
     if (socket.current) {
       socket.current.on("msg-receive", (msg) => {
         console.log("msg-receive chat container");
-        setArrivalMsg({ fromSelf: false, message: msg ,time: "just now" });
+        setArrivalMsg({ fromSelf: false, message: msg, time: "just now" });
       });
     }
   }, [socket.current]);
-
 
   // useEffect(() => {
   //   console.log('soket is', socket.current);
   //   if (socket.current) {
   //      console.log("msg received frontend");
   //       socket.current.on("msg-receive", ( msg) => {
-         
+
   //         setArrivalMsg({ fromSelf: false, message: msg ,time: "just now" });
   //       });
-     
+
   //   }
   // }, [socket]);
 
@@ -90,9 +105,6 @@ function ChatContainer({ sender, socket }) {
       })
       .catch((err) => {});
   }, []);
- 
-  
-  
 
   useEffect(() => {
     arrivalMsg && setMessages((prev) => [...prev, arrivalMsg]);
@@ -103,20 +115,54 @@ function ChatContainer({ sender, socket }) {
   }, [messages]);
 
   return (
-    <div className="flex h-screen antialiased text-gray-800">
+    <div className="flex h-screen antialiased text-gray-800  mb-10">
       <div className="flex flex-row h-full w-full overflow-x-hidden">
         <div className="flex flex-col py-8 pl-6 pr-2 w-64 bg-white flex-shrink-0">
-          <div className="font-monoton  text-2xl cursor-pointer flex items-center bg-white">
-            <span className="text-3xl  mr-1 pt-2  text-purple-500 ">
-              {" "}
-              <ion-icon name="finger-print-outline"></ion-icon>
-            </span>
-            <span className="bg-gradient-to-r  from bg-purple-500 to-pink-600 text-transparent bg-clip-text ">
-              MESSAGES
-            </span>
+          <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-md">
+            <div className="flex items-center space-x-2">
+              <span className="text-4xl text-purple-500">
+                <ion-icon name="finger-print-outline"></ion-icon>
+              </span>
+              <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-600">
+                MESSAGES
+              </h2>
+            </div>
+
+            <div className="mt-8">
+              {/* <div className="flex items-center justify-between text-sm">
+      <span className="font-semibold">Active Conversations</span>
+      <span className="flex items-center justify-center bg-gray-300 h-6 w-6 rounded-full">
+        {contacts.length}
+      </span>
+    </div> */}
+
+              <div className="mt-4 max-h-48 overflow-y-auto">
+                {contacts?.map((result) => (
+                  <button
+                    key={result._id}
+                    onClick={() => handleContactClick(result)}
+                    className={`flex items-center p-3 space-x-2 hover:bg-gray-100 rounded-xl ${
+                      selectedContact === result ? "bg-blue-200" : ""
+                    }`}
+                  >
+                    <div className="h-10 w-10 rounded-full bg-gray-200 flex-shrink-0">
+                      <img
+                        className="h-10 w-10 rounded-full"
+                        src={result.img}
+                        alt="chatter img"
+                      />
+                    </div>
+                    <div className="text-base font-semibold">
+                      {result?.username}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
-     {/* <Link to={`/organizer-profile/${organizerDetails ? organizerDetails._id : null}`}> */}
-     {/* <div className="flex flex-col items-center bg-indigo-100 border border-gray-200 mt-4 w-full py-6 px-4 rounded-lg">
+
+          {/* <Link to={`/organizer-profile/${organizerDetails ? organizerDetails._id : null}`}> */}
+          {/* <div className="flex flex-col items-center bg-indigo-100 border border-gray-200 mt-4 w-full py-6 px-4 rounded-lg">
             <div className="h-20 w-20 rounded-full border overflow-hidden">
               <img
                 src={
@@ -135,7 +181,7 @@ function ChatContainer({ sender, socket }) {
               {organizerDetails?.firstName}
             </div>
           </div> */}
-     {/* </Link> */}
+          {/* </Link> */}
         </div>
         <div className="flex flex-col flex-auto h-full p-6">
           <div className="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4">
@@ -152,18 +198,18 @@ function ChatContainer({ sender, socket }) {
                         <div className="col-start-7 col-end-13 p-3 rounded-lg">
                           <div className="flex items-center justify-start flex-row-reverse">
                             <div className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-                            <img
-                src={
-                  userData?.image?.slice(0, 33) ===
-                  "https://lh3.googleusercontent.com"
-                    ? userData?.image
-                    : userData?.image
-                    ? `${userData?.image}`
-                    : img
-                }
-                alt="Avatar"
-                className="h-full w-full rounded-full"
-              />
+                              <img
+                                src={
+                                  userData?.image?.slice(0, 33) ===
+                                  "https://lh3.googleusercontent.com"
+                                    ? userData?.image
+                                    : userData?.image
+                                    ? `${userData?.image}`
+                                    : img
+                                }
+                                alt="Avatar"
+                                className="h-full w-full rounded-full"
+                              />
                             </div>
                             <div className="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
                               <div>{message.message}</div>
@@ -177,19 +223,19 @@ function ChatContainer({ sender, socket }) {
                         <div className="col-start-1 col-end-7 p-3 rounded-lg">
                           <div className="flex flex-row items-center">
                             <div className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-                            <img
-                src={
-                  organizerDetails?.img
-                  // organizerDetails?.image?.slice(0, 33) ===
-                  // "https://lh3.googleusercontent.com"
-                  //   ? organizerDetails?.image
-                  //   : organizerDetails?.image
-                  //   ? `${organizerDetails?.image}`
-                  //   : img
-                }
-                alt="Avatar"
-                className="h-full w-full rounded-full"
-              />
+                              <img
+                                src={
+                                  organizerDetails?.img
+                                  // organizerDetails?.image?.slice(0, 33) ===
+                                  // "https://lh3.googleusercontent.com"
+                                  //   ? organizerDetails?.image
+                                  //   : organizerDetails?.image
+                                  //   ? `${organizerDetails?.image}`
+                                  //   : img
+                                }
+                                alt="Avatar"
+                                className="h-full w-full rounded-full"
+                              />
                             </div>
                             <div className="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
                               <div>{message.message}</div>
@@ -203,7 +249,6 @@ function ChatContainer({ sender, socket }) {
                 })}
               </div>
             </div>
-
 
             <form onSubmit={sendMessage}>
               <div className="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4">

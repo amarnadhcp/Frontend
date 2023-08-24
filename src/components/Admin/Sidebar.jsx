@@ -32,10 +32,10 @@ function Sidebar() {
         </li>
         <li className="mb-4">
           <Link
-            to="/products"
+            to="/admin/payments"
             className="block border-l-4 border-transparent hover:border-indigo-600 px-4 py-2"
           >
-            Products
+            project
           </Link>
         </li>
         {/* Add more links as needed */}

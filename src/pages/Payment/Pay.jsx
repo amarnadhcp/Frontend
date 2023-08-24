@@ -10,7 +10,6 @@ const stripePromise = loadStripe("pk_test_51NdqznSGqo6y3mFMXCN7I8QJoIVcjTi2xDZAv
 const Pay = ()=>{
     const [clientSecret, setClientSecret] = useState("");
     const { id } = useParams();
-console.log(id,"the users data odr the i");
     useEffect(() => {
         const makeRequest = async () => {
           try {
@@ -18,7 +17,6 @@ console.log(id,"the users data odr the i");
               `users/payment/${id}`
             );
             setClientSecret(res.data.clientSecret);
-            console.log(res.data.clientSecret);
 
           } catch (err) {
             console.log(err);
@@ -39,7 +37,7 @@ console.log(id,"the users data odr the i");
         <div className="App">
         {clientSecret && (
           <Elements options={options} stripe={stripePromise}>
-            <CheckoutForm Secret={clientSecret} />
+            <CheckoutForm Secret={clientSecret} gigId={id}/>
           </Elements>
         )}
       </div>

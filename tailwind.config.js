@@ -18,7 +18,9 @@ export default {
     extend: {
       backgroundColor: {
         'button-color': '#ac46a1',
-        'but-color': '#d62828'
+        'but-color': '#d62828',
+        'new-color': '#9370db '
+        
       },
     },
   },

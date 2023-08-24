@@ -52,6 +52,35 @@ export const AddPost = async (data) => {
   }
 };
 
+
+
+export const findUser = async(userId)=>{
+  try {
+    const data = await userRequest.get("/users/finduser",{
+      params:{userId:userId}
+    })
+    return data
+  } catch (error) {
+    
+  }
+}
+
+
+
+export const getAllContacts = async(freelancerId)=>{
+  try {
+     const data =await userRequest.get("/users/getAllContacts",{
+      params:{freelancerId:freelancerId}
+     })
+     return data 
+  } catch (error) {
+      
+  }
+}
+
+
+
+
 export const addMessage = async (from, to, msg) => {
   try {
     const data = await userRequest.post("/users/sentmsg", { from, to, msg });
@@ -61,9 +90,9 @@ export const addMessage = async (from, to, msg) => {
 
 export const getAllMessages=async(from,to)=>{
   try {
-
+console.log('fetch');
       const data = await userRequest.get("users/getAllmessage",{
-          params:{from,to}
+          params:{from,to }
       })
       return data;
   } catch (error) {
@@ -81,3 +110,27 @@ export const senderDetails= async(senderId)=>{
   } catch (error) {
       
   }}
+
+
+  export const AcceptRecieve = async(PreposalId)=>{
+    try {
+      const data = await userRequest.post("/users/Recieved",{ PreposalId}
+      )
+    return data
+      
+    } catch (error) {
+      
+    }
+  }
+
+
+export const  WorkCompleted =async(proposalId)=>{
+  try {
+    const data = await userRequest.post("freelancer/WorkCompleted",{ proposalId}
+    )
+  return data
+    
+  } catch (error) {
+    
+  }
+}

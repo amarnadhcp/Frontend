@@ -59,7 +59,7 @@ const Feed = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-8 md:gap-10 px-2 sm:px-8 md:px-10 mt-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-8 md:gap-10 px-2 sm:px-8 md:px-10 mt-12 mb-20">
         {filteredData.length > 0 ? (
           filteredData.map((item) => (
             <Link to={`/gig/${item._id}`} key={item.id}>

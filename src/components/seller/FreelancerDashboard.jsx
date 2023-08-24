@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import NavBar from "../common/NavBar";
 import AddPostForm from "../userModal/AddPost";
 import MyGigs from "./MyGigs";
-import Footer from "../common/Footer"
 import RequesPreposal from "./RequestPreposals"
 import Ongoing from "./Ongoing"
-
+import History from "./History";
 
 
 
@@ -24,6 +22,8 @@ const Dashboard = () => {
         return <Ongoing />;
       case "anotherOption":
         return <MyGigs />;
+        case "History":
+          return <History />;
       default:
         return <AddPostForm />;
     }
@@ -64,6 +64,16 @@ const Dashboard = () => {
               onClick={() => handleOptionClick("ongoingProject")}
             >
               Ongoing
+            </button>
+            <button
+              className={`flex-grow py-3 px-2 sm:px-4 w-16 sm:w-20 font-semibold text-xs sm:text-sm focus:outline-none ${
+                selectedOption === "History"
+                  ? "bg-violet-400 text-white transition"
+                  : "text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition"
+              }`}
+              onClick={() => handleOptionClick("History")}
+            >
+            History
             </button>
             <button
               className={`flex-grow py-3 px-2 sm:px-4 w-16 sm:w-20 font-semibold text-xs sm:text-sm focus:outline-none ${
