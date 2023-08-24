@@ -1,7 +1,7 @@
 import axios from "axios"
-// const userurl = import.meta.env.
+const userurl = import.meta.env.VITE_userBaseUrl
 const userRequest = axios.create({
-    baseURL:"http://localhost:8800/api/"
+    baseURL:userurl
 })
 
 userRequest.interceptors.request.use((req) => {

@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setUserDetails } from "../../Redux/UserSlice";
+const BackentURl = import.meta.env.VITE_Backent_URL
 
 export default function EmailVerify() {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ export default function EmailVerify() {
     const verifyEmailUrl = async () => {
       try {
         console.log("logggedd");
-        const url = `http://localhost:8800/api/auth/${params.id}/verify/${params.token}`;
+        const url = `${BackentURl}/api/auth/${params.id}/verify/${params.token}`;
         const { data } = await axios.get(url);
         if (data) {
           setValidUrl(true);
