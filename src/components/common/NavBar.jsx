@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from "react-router-dom"; 
 import { Link } from 'react-router-dom';
 import { LogoutDetails } from '../../Redux/UserSlice';
 
 const Navbar = () => {
+  const navigate = useNavigate(); 
   const dispatch = useDispatch();
   const [showDropdown, setShowDropdown] = useState(false);
   const { username, image } = useSelector(state => state.user);
@@ -22,6 +24,7 @@ const Navbar = () => {
         username: ''
       })
     );
+    navigate("/");
     setShowDropdown(!showDropdown)
 
   };

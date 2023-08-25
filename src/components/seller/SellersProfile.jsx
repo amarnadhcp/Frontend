@@ -92,64 +92,65 @@ const SellersProfile = () => {
         <div className="container mx-auto px-4">
           <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
             <div className="px-6">
-            <div className="flex flex-wrap justify-center">
-  <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
-    <div className="relative">
-      <div className="w-40 h-40 overflow-hidden rounded-full shadow-xl absolute -m-16 -ml-20 lg:-ml-16 cursor-pointer">
-        <img
-          alt="..."
-          src={data?.freelancer.img}
-          className="object-cover w-full h-full border-none"
-          onClick={() => inputRef.current.click()}
-        />
-      </div>
-      <input
-        type="file"
-        accept="image/*"
-        onChange={handleImageUpload}
-        ref={inputRef}
-        className="hidden"
-      />
-    </div>
-  </div>
-  <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
-    <div className="py-6 px-3 mt-32 sm:mt-0">
-      <Suspense fallback={<div>.....</div>}>
-        <EditProfile data={data} />
-      </Suspense>
-    </div>
-  </div>
-  <div className="w-full lg:w-4/12 px-4 lg:order-1">
-    <div className="flex justify-center py-4 lg:pt-4 pt-8">
-      <div className="mr-4 p-3 text-center">
-        <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600 ">
-          {" "}
-          <a href={data?.freelancer.linkedin} target="_blank">
-            {" "}
-            <AiFillLinkedin size={30} />{" "}
-          </a>{" "}
-        </span>
-        <span className="text-sm text-blueGray-400">linkedin</span>
-      </div>
-      <div className="mr-4 p-3 text-center">
-        <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-          <a href={data?.freelancer.github} target="_blank">
-            {" "}
-            <AiFillGithub size={30} />{" "}
-          </a>
-        </span>
-        <span className="text-sm text-blueGray-400">GitHub</span>
-      </div>
-      <div className="lg:mr-4 p-3 text-center">
-        <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-          5
-        </span>
-        <span className="text-sm text-blueGray-400">Gigs</span>
-      </div>
-    </div>
-  </div>
-</div>
-
+              <div className="flex flex-wrap justify-center">
+                <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
+                  <div className="relative">
+                    <div className="w-40 h-40 overflow-hidden rounded-full shadow-xl absolute -m-16 -ml-20 lg:-ml-16 cursor-pointer">
+                      <img
+                        alt="..."
+                        src={data?.freelancer.img}
+                        className="object-cover w-full h-full border-none"
+                        onClick={() => inputRef.current.click()}
+                      />
+                    </div>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageUpload}
+                      ref={inputRef}
+                      className="hidden"
+                    />
+                  </div>
+                </div>
+                <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
+                  <div className="py-6 px-3 mt-32 sm:mt-0">
+                    <Suspense fallback={<div>.....</div>}>
+                      <EditProfile data={data} />
+                    </Suspense>
+                  </div>
+                </div>
+                <div className="w-full lg:w-4/12 px-4 lg:order-1">
+                  <div className="flex justify-center py-4 lg:pt-4 pt-8">
+                    <div className="mr-4 p-3 text-center">
+                      <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600 ">
+                        {" "}
+                        <a href={data?.freelancer.linkedin} target="_blank">
+                          {" "}
+                          <AiFillLinkedin size={30} />{" "}
+                        </a>{" "}
+                      </span>
+                      <span className="text-sm text-blueGray-400">
+                        linkedin
+                      </span>
+                    </div>
+                    <div className="mr-4 p-3 text-center">
+                      <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
+                        <a href={data?.freelancer.github} target="_blank">
+                          {" "}
+                          <AiFillGithub size={30} />{" "}
+                        </a>
+                      </span>
+                      <span className="text-sm text-blueGray-400">GitHub</span>
+                    </div>
+                    <div className="lg:mr-4 p-3 text-center">
+                      <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
+                        5
+                      </span>
+                      <span className="text-sm text-blueGray-400">Gigs</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <div className="text-center mt-5">
                 <h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700">

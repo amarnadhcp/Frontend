@@ -13,7 +13,7 @@ const CategoryTable = () => {
     adminRequest.get("/works").then((res) => res.data),
   });
 
-  console.log(data);
+
 
   const handlePay = async (freelancerId, price, ProposalId) => {
     await PayFreelancer(freelancerId, price, ProposalId);

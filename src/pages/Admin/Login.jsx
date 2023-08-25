@@ -33,58 +33,52 @@ const Login = () => {
   }
 
   return (
-    <div className="bg-gray-100 flex justify-center items-center h-screen">
-      <div className="w-full max-w-xs">
-        <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="email"
-            >
-              Email
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="email"
-              name="email"
-              type="email"
-              placeholder="Enter your email"
-              onChange={(e) => { setAdmin({ ...admin, [e.target.name]: e.target.value }) }}
-            />
-          </div>
-          <div className="mb-6">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="password"
-            >
-              Password
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="password"
-              name="password"
-              type="password"
-              placeholder="Enter your password"
-              onChange={(e) => { setAdmin({ ...admin, [e.target.name]: e.target.value }) }}
-
-            />
-          </div>
-          <div className="mb-6 flex items-center justify-center">
-            <label className="text-red-500 text-lg text-center">{error}</label>
-          </div>
-
-
-          <div className="flex items-center justify-center">
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              type="submit"
-            >
-              Sign In
-            </button>
-          </div>
-        </form>
+    <div class="bg-gray-100 flex justify-center items-center h-screen">
+  <div class="w-full max-w-md">
+    <form onSubmit={handleSubmit} class="bg-white shadow-lg rounded-lg px-10 py-8">
+      <h2 class="text-2xl font-semibold mb-6 text-center">Admin Login</h2>
+      <div class="mb-6">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+          Email
+        </label>
+        <input
+          class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="email"
+          name="email"
+          type="email"
+          placeholder="Enter your email"
+          onChange={(e) => { setAdmin({ ...admin, [e.target.name]: e.target.value }) }}
+        />
       </div>
-    </div>
+      <div class="mb-6">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+          Password
+        </label>
+        <input
+          class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="password"
+          name="password"
+          type="password"
+          placeholder="Enter your password"
+          onChange={(e) => { setAdmin({ ...admin, [e.target.name]: e.target.value }) }}
+        />
+      </div>
+      <div class="mb-6">
+        <p class="text-red-500 text-sm">{error}</p>
+      </div>
+
+      <div class="flex items-center justify-center">
+        <button
+          class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded focus:outline-none focus:shadow-outline"
+          type="submit"
+        >
+          Sign In
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
   )
 }
 

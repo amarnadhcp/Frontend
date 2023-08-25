@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import BecomeSeller from "../userModal/BecomeSeller.jsx";
+
 const Profile = () => {
   const { image, username, email } = useSelector((state) => state.user);
 
@@ -43,18 +44,16 @@ const Profile = () => {
         <div className="container mx-auto px-4">
           <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
             <div className="px-6">
-              <div className="flex flex-wrap justify-center items-center">
-                {" "}
+              <div className="flex flex-wrap justify-center">
                 <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
                   <div className="relative">
-                    <img
-                      alt="..."
-                      src={
-                        image ||
-                        "https://res.cloudinary.com/dvprhxg7x/image/upload/v1692803989/asset/noavatar_vhrf74.jpg"
-                      }
-                      className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-200-px cursor-pointer"
-                    />
+                    <div className="w-40 h-40 overflow-hidden rounded-full shadow-xl absolute -m-16 -ml-20 lg:-ml-16 cursor-pointer">
+                      <img
+                        alt="..."
+                        src={image || "https://res.cloudinary.com/dvprhxg7x/image/upload/v1692803989/asset/noavatar_vhrf74.jpg"}
+                        className="object-cover w-full h-full border-none"
+                      />
+                    </div>
                   </div>
                 </div>
                 <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
@@ -102,7 +101,6 @@ const Profile = () => {
                   <i className="fas fa-envelope mr-2 text-lg text-blueGray-400"></i>
                   {email}
                 </div>
-               
               </div>
               <div className="mt-7 py-10 border-t border-blueGray-200 text-center">
                 <div className="flex flex-wrap justify-center">
