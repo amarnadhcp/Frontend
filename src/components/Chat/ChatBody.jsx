@@ -8,8 +8,8 @@ import { addMessage, getAllMessages } from "../../api/userApi";
 import { IoMdSend } from "react-icons/io";
 // import { BsEmojiSmileFill } from "react-icons/bs";
 import { v4 as uuidv4 } from "uuid";
-const ORGANIZER_PROFILE_URL = import.meta.env.VITE_ORGANIZER_PROFILE_URL;
-const PROFILE_URL = import.meta.env.VITE_PROFILE_URL;
+// const ORGANIZER_PROFILE_URL = import.meta.env.VITE_ORGANIZER_PROFILE_URL;
+// const PROFILE_URL = import.meta.env.VITE_PROFILE_URL;
 // import img from "../../../assets/images/avathar2.png"
 
 function ChatBody({ sender, socket }) {
@@ -19,9 +19,7 @@ function ChatBody({ sender, socket }) {
   const [messages, setMessages] = useState([]);
   const [arrivalMsg, setArrivalMsg] = useState(null);
   const scrollRef = useRef();
-  console.log(messages);
-  // console.log(socket, "sockett");
-  // console.log(sender, 98765);
+
 
   useEffect(() => {
     if (socket.current) {
@@ -57,15 +55,14 @@ function ChatBody({ sender, socket }) {
     addMessage(userData.id, sender.id, msg).then((res) => {
       setMsgSent((prevState) => !prevState);
       setMsg("");
-      console.log(messages, "all nneesafe");
+      
       const msgs = [...messages];
       msgs.push({ fromSelf: true, message: msg });
-      console.log(msgs, "new msg");
+     
       setMessages(msgs);
     });
   };
 
-  console.log(messages, "latest messages");
 
   return (
     <div className="w-full">

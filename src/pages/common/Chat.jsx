@@ -7,7 +7,7 @@ import { io } from "socket.io-client";
 import { useSelector } from "react-redux";
 import ChatSideBar from "../../components/Chat/ChatSideBar";
 import ChatBody from "../../components/Chat/ChatBody";
-const URL = import.meta.env.Backent_URL;
+const URL = import.meta.env.VITE_Backent_URL;
 
 function Chat() {
   const params = useParams();
@@ -17,7 +17,7 @@ function Chat() {
 
   useEffect(()=>{
     if(params.id){
-    console.log("params hererere");
+    
 
       findUser(params.id).then((res)=>{
         setSender({
@@ -32,7 +32,7 @@ function Chat() {
 
   useEffect(() => {
     if (userData.id) {
-      socket.current = io("http://localhost:8800");
+      socket.current = io(URL);
       socket.current.emit("add-user", userData.id);
     }
   }, []);

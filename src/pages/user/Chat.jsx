@@ -4,7 +4,7 @@ import userRequest from "../../utils/userRequest";
 import { io } from "socket.io-client";
 import { useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
-const URL = import.meta.env.Backent_URL;
+const URL = import.meta.env.VITE_Backent_URL;
 
 const Chat = () => {
   const { sellerId } = useParams();
@@ -22,7 +22,7 @@ const Chat = () => {
       to: selectedUser,
     });
     setMessages(response.data);
-    console.log(messages);
+    
   }, []);
 
   useEffect(() => {
